@@ -1,0 +1,122 @@
+*DeleteTrailingWhitespace.txt*	Delete unwanted whitespace at the end of lines.
+
+		 DELETE TRAILING WHITESPACE    by Ingo Karkat
+						*DeleteTrailingWhitespace.vim*
+description			|DeleteTrailingWhitespace-description|
+usage				|DeleteTrailingWhitespace-usage|
+installation			|DeleteTrailingWhitespace-installation|
+configuration			|DeleteTrailingWhitespace-configuration|
+limitations			|DeleteTrailingWhitespace-limitations|
+known problems			|DeleteTrailingWhitespace-known-problems|
+todo				|DeleteTrailingWhitespace-todo|
+history				|DeleteTrailingWhitespace-history|
+
+==============================================================================
+DESCRIPTION				*DeleteTrailingWhitespace-description*
+
+This plugin deletes whitespace at the end of each line, on demand via the
+:DeleteTrailingWhitespace command, or automatically when the buffer is
+written.
+
+RELATED WORKS								     *
+
+There are already a number of plugins that define such a command; most bundle
+this functionality together with the highlighting of trailing whitespace.
+However, most of them cannot consider whitespace exceptions and are not as
+flexible.
+- trailing-whitespace (vimscript #3201) defines :FixWhitespace.
+- bad-whitespace (vimscript #3735) defines :EraseBadWhitespace.
+- Trailer Trash (vimscript #3938) defines :Trim.
+
+This plugin leverages the superior detection and customization facilities of
+the companion |ShowTrailingWhitespace.vim| plugin (vimscript #0000), though it
+can also be used without it if you're not interested in highlighting and
+customizing.
+
+To quickly locate the occurrences of trailing whitespace, you can use the
+companion |JumpToTrailingWhitespace.vim| plugin (vimscript #0000).
+
+==============================================================================
+USAGE					      *DeleteTrailingWhitespace-usage*
+						   *:DeleteTrailingWhitespace*
+:[range]DeleteTrailingWhitespace
+			Delete all trailing whitespace in the current buffer
+			or [range].
+
+==============================================================================
+INSTALLATION			       *DeleteTrailingWhitespace-installation*
+
+This script is packaged as a |vimball|. If you have the "gunzip" decompressor
+in your PATH, simply edit the *.vba.gz package in Vim; otherwise, decompress
+the archive first, e.g. using WinZip. Inside Vim, install by sourcing the
+vimball or via the |:UseVimball| command. >
+    vim DeleteTrailingWhitespace.vba.gz
+    :so %
+To uninstall, use the |:RmVimball| command.
+
+DEPENDENCIES			       *DeleteTrailingWhitespace-dependencies*
+
+- Requires Vim 7.0 or higher.
+- The |ShowTrailingWhitespace.vim| plugin (vimscript #0000) complements this
+  script, but is not required. With it, this plugin considers the whitespace
+  exceptions for certain filetypes.
+
+==============================================================================
+CONFIGURATION			      *DeleteTrailingWhitespace-configuration*
+
+For a permanent configuration, put the following commands into your |vimrc|:
+
+						  *g:DeleteTrailingWhitespace*
+By default, trailing whitespace is processed before writing the buffer when it
+has been detected and is currently being highlighted by the
+|ShowTrailingWhitespace.vim| plugin.
+To turn off the automatic deletion of trailing whitespace, use: >
+    let g:DeleteTrailingWhitespace = 0
+If you want to eradicate all trailing whitespace all the time, use: >
+    let g:DeleteTrailingWhitespace = 1
+<
+					   *g:DeleteTrailingWhitespace_Action*
+For processing, the default action is aborting the write, unless ! is given.
+To automatically eradicate the trailing whitespace, use: >
+    let g:DeleteTrailingWhitespace_Action = 'delete'
+To ask whether to remove or keep the whitespace (either for the current
+buffer, or all buffers in the entire Vim session), use: >
+    let g:DeleteTrailingWhitespace_Action = 'ask'
+<
+			*g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting*
+When the plugin is configured to ask the user, and she answers the query with
+"Never" or "Nowhere", the |ShowTrailingWhitespace.vim| highlighting is turned
+off automatically; when you ignore it, there's typically no sense in still
+highlighting it. If you don't want that, turn it off via: >
+    let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
+<
+
+	      *b:DeleteTrailingWhitespace* *b:DeleteTrailingWhitespace_Action*
+The global detection and processing behavior can be changed for individual
+buffers by setting the corresponding buffer-local variables.
+
+==============================================================================
+LIMITATIONS				*DeleteTrailingWhitespace-limitations*
+
+KNOWN PROBLEMS			     *DeleteTrailingWhitespace-known-problems*
+
+TODO					       *DeleteTrailingWhitespace-todo*
+
+IDEAS					      *DeleteTrailingWhitespace-ideas*
+
+==============================================================================
+HISTORY					    *DeleteTrailingWhitespace-history*
+
+1.00	16-Mar-2012
+First published version.
+
+0.01	05-Mar-2012
+Started development.
+
+==============================================================================
+Copyright: (C) 2012 Ingo Karkat
+The VIM LICENSE applies to this script; see |copyright|.
+
+Maintainer:	Ingo Karkat <ingo@karkat.de>
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:

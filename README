@@ -1,0 +1,30 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3967
+
+This plugin deletes whitespace at the end of each line, on demand via the
+:DeleteTrailingWhitespace command, or automatically when the buffer is
+written.
+
+RELATED WORKS
+The basic substitution commands as well as more elaborate scriptlets, as the
+idea of automating this can be found in this VimTip:
+    http://vim.wikia.com/wiki/Remove_unwanted_spaces
+There are already a number of plugins that define such a command; most bundle
+this functionality together with the highlighting of trailing whitespace.
+However, most of them cannot consider whitespace exceptions and are not as
+flexible.
+- trailing-whitespace (vimscript #3201) defines :FixWhitespace.
+- bad-whitespace (vimscript #3735) defines :EraseBadWhitespace.
+- Trailer Trash (vimscript #3938) defines :Trim.
+
+This plugin leverages the superior detection and customization facilities of
+the companion ShowTrailingWhitespace.vim plugin (vimscript #3966), though it
+can also be used without it if you're not interested in highlighting and
+customizing.
+
+To quickly locate the occurrences of trailing whitespace, you can use the
+companion JumpToTrailingWhitespace.vim plugin (vimscript #3968).
+
+USAGE
+:[range]DeleteTrailingWhitespace
+                        Delete all trailing whitespace in the current buffer
+                        or [range].
