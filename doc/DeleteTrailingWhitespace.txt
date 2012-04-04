@@ -20,6 +20,9 @@ written.
 
 RELATED WORKS								     *
 
+The basic substitution commands as well as more elaborate scriptlets, as the
+idea of automating this can be found in this VimTip:
+    http://vim.wikia.com/wiki/Remove_unwanted_spaces
 There are already a number of plugins that define such a command; most bundle
 this functionality together with the highlighting of trailing whitespace.
 However, most of them cannot consider whitespace exceptions and are not as
@@ -29,12 +32,12 @@ flexible.
 - Trailer Trash (vimscript #3938) defines :Trim.
 
 This plugin leverages the superior detection and customization facilities of
-the companion |ShowTrailingWhitespace.vim| plugin (vimscript #0000), though it
+the companion |ShowTrailingWhitespace.vim| plugin (vimscript #3966), though it
 can also be used without it if you're not interested in highlighting and
 customizing.
 
 To quickly locate the occurrences of trailing whitespace, you can use the
-companion |JumpToTrailingWhitespace.vim| plugin (vimscript #0000).
+companion |JumpToTrailingWhitespace.vim| plugin (vimscript #3968).
 
 ==============================================================================
 USAGE					      *DeleteTrailingWhitespace-usage*
@@ -57,7 +60,7 @@ To uninstall, use the |:RmVimball| command.
 DEPENDENCIES			       *DeleteTrailingWhitespace-dependencies*
 
 - Requires Vim 7.0 or higher.
-- The |ShowTrailingWhitespace.vim| plugin (vimscript #0000) complements this
+- The |ShowTrailingWhitespace.vim| plugin (vimscript #3966) complements this
   script, but is not required. With it, this plugin considers the whitespace
   exceptions for certain filetypes.
 
@@ -106,6 +109,9 @@ IDEAS					      *DeleteTrailingWhitespace-ideas*
 
 ==============================================================================
 HISTORY					    *DeleteTrailingWhitespace-history*
+
+1.01	04-Apr-2012
+Define command with -bar so that it can be chained.
 
 1.00	16-Mar-2012
 First published version.

@@ -9,6 +9,8 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.01.003	04-Apr-2012	Define command with -bar so that it can be
+"				chained.
 "   1.00.002	14-Mar-2012	Support turning off highlighting of trailing
 "				whitespace when the user answers the query with
 "				"Never" or "Nowhere".
@@ -44,6 +46,6 @@ augroup END
 
 "- commands --------------------------------------------------------------------
 
-command! -range=% DeleteTrailingWhitespace call DeleteTrailingWhitespace#Delete(<line1>, <line2>)
+command! -bar -range=% DeleteTrailingWhitespace call DeleteTrailingWhitespace#Delete(<line1>, <line2>)
 
 " vim: set ts=8 sts=4 sw=4 noexpandtab ff=unix fdm=syntax :
