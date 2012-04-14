@@ -30,6 +30,8 @@ flexible.
 - trailing-whitespace (vimscript #3201) defines :FixWhitespace.
 - bad-whitespace (vimscript #3735) defines :EraseBadWhitespace.
 - Trailer Trash (vimscript #3938) defines :Trim.
+- StripWhiteSpaces (vimscript #4016) defines :StripWhiteSpaces and strips
+  automatically, too, but is way more simple than this plugin.
 
 This plugin leverages the superior detection and customization facilities of
 the companion |ShowTrailingWhitespace.vim| plugin (vimscript #3966), though it
@@ -69,6 +71,12 @@ CONFIGURATION			      *DeleteTrailingWhitespace-configuration*
 
 For a permanent configuration, put the following commands into your |vimrc|:
 
+					   *DeleteTrailingWhitespace-mappings*
+This plugin doesn't come with predefined mappings, but if you want some, you
+can trivially define them yourself: >
+    nnoremap <Leader>d$ :<C-u>%DeleteTrailingWhitespace<CR>
+    vnoremap <Leader>d$ :DeleteTrailingWhitespace<CR>
+<
 						  *g:DeleteTrailingWhitespace*
 By default, trailing whitespace is processed before writing the buffer when it
 has been detected and is currently being highlighted by the
@@ -109,6 +117,9 @@ IDEAS					      *DeleteTrailingWhitespace-ideas*
 
 ==============================================================================
 HISTORY					    *DeleteTrailingWhitespace-history*
+
+1.02	14-Apr-2012
+FIX: Avoid polluting search history.
 
 1.01	04-Apr-2012
 Define command with -bar so that it can be chained.

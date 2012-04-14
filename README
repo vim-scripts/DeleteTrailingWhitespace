@@ -15,6 +15,8 @@ flexible.
 - trailing-whitespace (vimscript #3201) defines :FixWhitespace.
 - bad-whitespace (vimscript #3735) defines :EraseBadWhitespace.
 - Trailer Trash (vimscript #3938) defines :Trim.
+- StripWhiteSpaces (vimscript #4016) defines :StripWhiteSpaces and strips
+  automatically, too, but is way more simple than this plugin.
 
 This plugin leverages the superior detection and customization facilities of
 the companion ShowTrailingWhitespace.vim plugin (vimscript #3966), though it

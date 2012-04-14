@@ -9,6 +9,7 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.02.003	14-Apr-2012	FIX: Avoid polluting search history.
 "   1.00.002	14-Mar-2012	Support turning off highlighting of trailing
 "				whitespace when the user answers the query with
 "				"Never" or "Nowhere".
@@ -29,6 +30,7 @@ endfunction
 function! DeleteTrailingWhitespace#Delete( startLnum, endLnum )
     let l:save_cursor = getpos('.')
     execute  a:startLnum . ',' . a:endLnum . 'substitute/' . DeleteTrailingWhitespace#Pattern() . '//e'
+    call histdel('search', -1) " @/ isn't changed by a function, cp. |function-search-undo|
     call setpos('.', l:save_cursor)
 endfunction
 
