@@ -118,6 +118,10 @@ IDEAS					      *DeleteTrailingWhitespace-ideas*
 ==============================================================================
 HISTORY					    *DeleteTrailingWhitespace-history*
 
+1.03	19-Apr-2012
+Handle readonly and nomodifiable buffers by printing just the warning / error,
+without the multi-line function error.
+
 1.02	14-Apr-2012
 FIX: Avoid polluting search history.
 

@@ -9,6 +9,9 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.03.004	19-Apr-2012	Handle readonly and nomodifiable buffers by
+"				printing just the warning / error, without
+"				the multi-line function error.
 "   1.01.003	04-Apr-2012	Define command with -bar so that it can be
 "				chained.
 "   1.00.002	14-Mar-2012	Support turning off highlighting of trailing
@@ -46,6 +49,15 @@ augroup END
 
 "- commands --------------------------------------------------------------------
 
-command! -bar -range=% DeleteTrailingWhitespace call DeleteTrailingWhitespace#Delete(<line1>, <line2>)
+function! s:Before()
+    let s:isModified = &l:modified
+endfunction
+    function! s:After()
+	if ! s:isModified
+	    setlocal nomodified
+	endif
+	unlet s:isModified
+    endfunction
+command! -bar -range=% DeleteTrailingWhitespace call <SID>Before()<Bar>call setline(1, getline(1))<Bar>call <SID>After()<Bar>call DeleteTrailingWhitespace#Delete(<line1>, <line2>)
 
 " vim: set ts=8 sts=4 sw=4 noexpandtab ff=unix fdm=syntax :
