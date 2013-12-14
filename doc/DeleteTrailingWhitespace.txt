@@ -18,6 +18,16 @@ This plugin deletes whitespace at the end of each line, on demand via the
 :DeleteTrailingWhitespace command, or automatically when the buffer is
 written.
 
+SEE ALSO								     *
+
+This plugin leverages the superior detection and customization facilities of
+the companion |ShowTrailingWhitespace.vim| plugin (vimscript #3966), though it
+can also be used without it if you're not interested in highlighting and
+customizing.
+
+To quickly locate the occurrences of trailing whitespace, you can use the
+companion |JumpToTrailingWhitespace.vim| plugin (vimscript #3968).
+
 RELATED WORKS								     *
 
 The basic substitution commands as well as more elaborate scriptlets, as the
@@ -32,14 +42,6 @@ flexible.
 - Trailer Trash (vimscript #3938) defines :Trim.
 - StripWhiteSpaces (vimscript #4016) defines :StripWhiteSpaces and strips
   automatically, too, but is way more simple than this plugin.
-
-This plugin leverages the superior detection and customization facilities of
-the companion |ShowTrailingWhitespace.vim| plugin (vimscript #3966), though it
-can also be used without it if you're not interested in highlighting and
-customizing.
-
-To quickly locate the occurrences of trailing whitespace, you can use the
-companion |JumpToTrailingWhitespace.vim| plugin (vimscript #3968).
 
 ==============================================================================
 USAGE					      *DeleteTrailingWhitespace-usage*
@@ -118,6 +120,12 @@ IDEAS					      *DeleteTrailingWhitespace-ideas*
 ==============================================================================
 HISTORY					    *DeleteTrailingWhitespace-history*
 
+1.04	14-Dec-2013
+- Minor: Make substitute() robust against 'ignorecase'.
+- Minor: Correct lnum for no-modifiable buffer check.
+- Handle local exception regular expressions that contain a "/" character.
+  This must be escaped for the :substitute/ command.
+
 1.03	19-Apr-2012
 Handle readonly and nomodifiable buffers by printing just the warning / error,
 without the multi-line function error.
@@ -135,8 +143,8 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2012 Ingo Karkat
-The VIM LICENSE applies to this script; see |copyright|.
+Copyright: (C) 2012-2013 Ingo Karkat
+The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
 ==============================================================================
