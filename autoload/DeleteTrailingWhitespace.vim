@@ -3,12 +3,16 @@
 " DEPENDENCIES:
 "   - ShowTrailingWhitespace.vim autoload script (optional)
 "
-" Copyright: (C) 2012-2013 Ingo Karkat
+" Copyright: (C) 2012-2014 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.05.006	13-Nov-2014	Corner case: Avoid "E21: Cannot make changes,
+"				'modifiable' is off" on a nomodifiable buffer
+"				when g:DeleteTrailingWhitespace_Action =
+"				'delete', and instead just show a warning.
 "   1.04.005	03-Dec-2013	Handle local exception regular expressions that
 "				contain a "/" character. This must be escaped
 "				for the :substitute/ command.
@@ -141,6 +145,12 @@ endfunction
 
 function! DeleteTrailingWhitespace#InterceptWrite()
     if DeleteTrailingWhitespace#IsSet() && DeleteTrailingWhitespace#IsAction()
+	if ! &l:modifiable && g:DeleteTrailingWhitespace_Action ==# 'delete'
+	    call ingo#msg#WarningMsg('Cannot automatically delete trailing whitespace, buffer is not modifiable')
+	    sleep 1 " Need a delay as the message is overwritten by :write.
+	    return
+	endif
+
 	call DeleteTrailingWhitespace#Delete(1, line('$'))
     endif
 endfunction

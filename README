@@ -1,8 +1,18 @@
 This is a mirror of http://www.vim.org/scripts/script.php?script_id=3967
 
+DESCRIPTION
 This plugin deletes whitespace at the end of each line, on demand via the
 :DeleteTrailingWhitespace command, or automatically when the buffer is
 written.
+
+SEE ALSO
+This plugin leverages the superior detection and customization facilities of
+the companion ShowTrailingWhitespace.vim plugin (vimscript #3966), though it
+can also be used without it if you're not interested in highlighting and
+customizing.
+
+To quickly locate the occurrences of trailing whitespace, you can use the
+companion JumpToTrailingWhitespace.vim plugin (vimscript #3968).
 
 RELATED WORKS
 The basic substitution commands as well as more elaborate scriptlets, as the
@@ -17,14 +27,8 @@ flexible.
 - Trailer Trash (vimscript #3938) defines :Trim.
 - StripWhiteSpaces (vimscript #4016) defines :StripWhiteSpaces and strips
   automatically, too, but is way more simple than this plugin.
-
-This plugin leverages the superior detection and customization facilities of
-the companion ShowTrailingWhitespace.vim plugin (vimscript #3966), though it
-can also be used without it if you're not interested in highlighting and
-customizing.
-
-To quickly locate the occurrences of trailing whitespace, you can use the
-companion JumpToTrailingWhitespace.vim plugin (vimscript #3968).
+- WhiteWash (vimscript #3920) provides functions that also can strip visible
+  ^M and sequential whitespacw between words.
 
 USAGE
 :[range]DeleteTrailingWhitespace

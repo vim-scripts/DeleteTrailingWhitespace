@@ -42,6 +42,8 @@ flexible.
 - Trailer Trash (vimscript #3938) defines :Trim.
 - StripWhiteSpaces (vimscript #4016) defines :StripWhiteSpaces and strips
   automatically, too, but is way more simple than this plugin.
+- WhiteWash (vimscript #3920) provides functions that also can strip visible
+  ^M and sequential whitespacw between words.
 
 ==============================================================================
 USAGE					      *DeleteTrailingWhitespace-usage*
@@ -54,10 +56,10 @@ USAGE					      *DeleteTrailingWhitespace-usage*
 INSTALLATION			       *DeleteTrailingWhitespace-installation*
 
 This script is packaged as a |vimball|. If you have the "gunzip" decompressor
-in your PATH, simply edit the *.vba.gz package in Vim; otherwise, decompress
+in your PATH, simply edit the *.vmb.gz package in Vim; otherwise, decompress
 the archive first, e.g. using WinZip. Inside Vim, install by sourcing the
 vimball or via the |:UseVimball| command. >
-    vim DeleteTrailingWhitespace.vba.gz
+    vim DeleteTrailingWhitespace*.vmb.gz
     :so %
 To uninstall, use the |:RmVimball| command.
 
@@ -120,6 +122,11 @@ IDEAS					      *DeleteTrailingWhitespace-ideas*
 ==============================================================================
 HISTORY					    *DeleteTrailingWhitespace-history*
 
+1.05	12-Dec-2014
+- Corner case: Avoid "E21: Cannot make changes, 'modifiable' is off" on a
+  nomodifiable buffer when g:DeleteTrailingWhitespace_Action = 'delete', and
+  instead just show a warning. Thanks to Enno Nagel for raising this issue.
+
 1.04	14-Dec-2013
 - Minor: Make substitute() robust against 'ignorecase'.
 - Minor: Correct lnum for no-modifiable buffer check.
@@ -143,7 +150,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2012-2013 Ingo Karkat
+Copyright: (C) 2012-2014 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
