@@ -3,12 +3,15 @@
 " DEPENDENCIES:
 "   - ShowTrailingWhitespace.vim autoload script (optional)
 "
-" Copyright: (C) 2012-2014 Ingo Karkat
+" Copyright: (C) 2012-2015 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.06.007	23-Feb-2015	FIX: Warning for nomodifiable buffer does not
+"				consider buffer-local
+"				b:DeleteTrailingWhitespace_Action.
 "   1.05.006	13-Nov-2014	Corner case: Avoid "E21: Cannot make changes,
 "				'modifiable' is off" on a nomodifiable buffer
 "				when g:DeleteTrailingWhitespace_Action =
@@ -73,6 +76,8 @@ function! DeleteTrailingWhitespace#IsSet()
     return l:isSet
 endfunction
 
+" Note: Could use ingo#plugin#setting#GetBufferLocal(), but avoid dependency to
+" ingo-library for now.
 function! DeleteTrailingWhitespace#GetAction()
     return (exists('b:DeleteTrailingWhitespace_Action') ?
     \	b:DeleteTrailingWhitespace_Action : g:DeleteTrailingWhitespace_Action)
@@ -145,7 +150,7 @@ endfunction
 
 function! DeleteTrailingWhitespace#InterceptWrite()
     if DeleteTrailingWhitespace#IsSet() && DeleteTrailingWhitespace#IsAction()
-	if ! &l:modifiable && g:DeleteTrailingWhitespace_Action ==# 'delete'
+	if ! &l:modifiable && DeleteTrailingWhitespace#GetAction() ==# 'delete'
 	    call ingo#msg#WarningMsg('Cannot automatically delete trailing whitespace, buffer is not modifiable')
 	    sleep 1 " Need a delay as the message is overwritten by :write.
 	    return
